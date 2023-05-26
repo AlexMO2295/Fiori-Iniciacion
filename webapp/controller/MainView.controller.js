@@ -13,7 +13,22 @@ sap.ui.define([
                 const oView = this.getView();
                 oJSONModel.loadData("./model/SelectionScreenMenu.json");
                 oView.setModel(oJSONModel, "selectionScreen");
+            },
 
+            onFilter: function(oEvent){
+
+            },
+
+            onClearFilter:function(){
+                const oModelSelScreen = this.getView().getModel("selectionScreen");
+                oModelSelScreen.setProperty("/ShipName", "");
+                oModelSelScreen.setProperty("/CountryKey", "");
+
+                const oList = this.getView().byId("invoicesList");
+                const oBinding = oList.getBinding("items");
+                oBinding.filter([]);
             }
+
+            
         });
     });
